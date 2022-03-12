@@ -13,4 +13,5 @@ Repository containing my dotfiles being currently used
 - [feh](https://feh.finalrewind.org/) to setup backgrounds
 - [unclutter](https://wiki.archlinux.org/index.php/unclutter) makes the cursor disapear after some time
 - [playerctl](https://github.com/altdesktop/playerctl) to use with polybar and i3 to control music
-- [light](https://archlinux.org/packages/community/x86_64/light/) because xbacklight wasn't working
+- [backlight_control](https://aur.archlinux.org/packages/backlight_control) because xbacklight wasn't working
+- [cbatticon](https://archlinux.org/packages/community/x86_64/cbatticon/) simple tray icon
