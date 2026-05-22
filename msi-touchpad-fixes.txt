@@ -1,0 +1,15 @@
+# B — Wake the bus
+echo on | sudo tee /sys/bus/pci/devices/0000:01:00.0/power/control
+echo on | sudo tee /sys/bus/pci/devices/0000:00:15.0/power/control
+cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status
+cat /sys/bus/pci/devices/0000:00:15.0/power/runtime_status
+
+# If C works → permanent fix + reboot
+sudo tee /etc/udev/rules.d/99-msi-touchpad-pci-pm.rules <<'EOF'
+SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{device}=="0x25a9", ATTR{power/control}="on", GOTO="msi_tp_end"
+SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x51e8", ATTR{power/control}="on", GOTO="msi_tp_end"
+LABEL="msi_tp_end"
+EOF
+sudo udevadm control --reload
+sudo udevadm trigger --subsystem-match=pci
+sudo reboot
